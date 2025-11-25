@@ -1,0 +1,686 @@
+import { Project } from '@/types';
+
+export const mockProjects: Project[] = [
+  {
+    id: 'proj-1',
+    name: 'Clean Water Initiative - Chitradurga District',
+    description: 'Comprehensive water conservation and access project including rainwater harvesting, borewell rehabilitation, and community water purification systems across 30 villages in Chitradurga district.',
+    type: 'Infrastructure',
+    category: 'Water & Sanitation',
+    status: 'Active',
+    startDate: new Date('2024-03-01'),
+    endDate: new Date('2025-02-28'),
+    duration: '12 months',
+    location: ['Holalkere', 'Challakere', 'Hiriyur'],
+    district: 'Chitradurga',
+    state: 'Karnataka',
+    
+    // KC-specific: Creator & Community
+    startedBy: 'Vikram Singh',
+    followers: 456,
+    activeMembers: 23,
+    
+    totalBudget: 12000000,
+    totalSpent: 6500000,
+    budgetLines: [
+      {
+        id: 'bl-1-1',
+        category: 'Infrastructure',
+        budgeted: 8000000,
+        spent: 4200000,
+        description: 'Water purification systems, rainwater harvesting units',
+      },
+      {
+        id: 'bl-1-2',
+        category: 'Training & Capacity Building',
+        budgeted: 2000000,
+        spent: 1200000,
+        description: 'Community training on water conservation',
+      },
+      {
+        id: 'bl-1-3',
+        category: 'Personnel',
+        budgeted: 1500000,
+        spent: 900000,
+        description: 'Project staff salaries',
+      },
+      {
+        id: 'bl-1-4',
+        category: 'Administration',
+        budgeted: 500000,
+        spent: 200000,
+        description: 'Office expenses, travel, documentation',
+      },
+    ],
+    fundingSources: [
+      { source: 'Central Government Grant', amount: 7000000, type: 'Government' },
+      { source: 'Corporate CSR - Tech Corp', amount: 3000000, type: 'Corporate' },
+      { source: 'Individual Donations', amount: 2000000, type: 'Donation' },
+    ],
+    
+    // KC-specific: Funding Goals
+    moneyRequired: 12000000,
+    moneyRaised: 10500000,
+    
+    projectManager: 'Vikram Singh',
+    teamMembers: ['Ramesh Kumar', 'Lakshmi Devi', 'Suresh Naik', 'Priya Menon'],
+    
+    // KC-specific: Team Goals
+    membersRequired: 30,
+    membersJoined: 23,
+    
+    objectives: [
+      'Install 30 community water purification units',
+      'Set up rainwater harvesting in 100 households',
+      'Reduce waterborne diseases by 60%',
+      'Train 500 community members in water conservation',
+      'Rehabilitate 15 borewells',
+    ],
+    expectedImpact: 'Over 5,000 families will have access to clean water, reducing waterborne diseases and improving quality of life',
+    impactMetrics: [
+      { id: 'im-1-1', indicator: 'Water Purification Units Installed', target: 30, achieved: 18, unit: 'units' },
+      { id: 'im-1-2', indicator: 'Households with Rainwater Harvesting', target: 100, achieved: 65, unit: 'households' },
+      { id: 'im-1-3', indicator: 'Community Members Trained', target: 500, achieved: 320, unit: 'people' },
+      { id: 'im-1-4', indicator: 'Borewells Rehabilitated', target: 15, achieved: 9, unit: 'borewells' },
+    ],
+    beneficiaryTarget: 1500,
+    beneficiariesReached: 892,
+    milestones: [
+      {
+        id: 'ms-1-1',
+        title: 'Project Planning & Community Mobilization',
+        description: 'Complete baseline survey and community engagement',
+        dueDate: new Date('2024-04-30'),
+        completedDate: new Date('2024-04-25'),
+        status: 'Completed',
+        assignedTo: 'Vikram Singh',
+      },
+      {
+        id: 'ms-1-2',
+        title: 'Infrastructure Procurement',
+        description: 'Purchase all water purification and harvesting equipment',
+        dueDate: new Date('2024-06-30'),
+        completedDate: new Date('2024-07-05'),
+        status: 'Completed',
+        assignedTo: 'Ramesh Kumar',
+      },
+      {
+        id: 'ms-1-3',
+        title: 'Phase 1 Installation (10 villages)',
+        description: 'Install systems in first 10 villages',
+        dueDate: new Date('2024-09-30'),
+        completedDate: new Date('2024-10-15'),
+        status: 'Completed',
+        assignedTo: 'Suresh Naik',
+      },
+      {
+        id: 'ms-1-4',
+        title: 'Phase 2 Installation (10 villages)',
+        description: 'Install systems in next 10 villages',
+        dueDate: new Date('2024-12-31'),
+        status: 'In Progress',
+        assignedTo: 'Ramesh Kumar',
+      },
+      {
+        id: 'ms-1-5',
+        title: 'Phase 3 Installation (10 villages)',
+        description: 'Complete installation in remaining villages',
+        dueDate: new Date('2025-02-15'),
+        status: 'Not Started',
+        assignedTo: 'Suresh Naik',
+      },
+    ],
+    linkedDonors: ['1', '2'],
+    linkedBeneficiaries: ['ben-3'],
+    linkedCampaigns: [],
+    documents: [
+      {
+        id: 'doc-1-1',
+        name: 'Project Proposal.pdf',
+        type: 'Proposal',
+        uploadDate: new Date('2024-02-01'),
+        url: '/documents/proj-1-proposal.pdf',
+      },
+      {
+        id: 'doc-1-2',
+        name: 'Baseline Survey Report.pdf',
+        type: 'Report',
+        uploadDate: new Date('2024-04-15'),
+        url: '/documents/proj-1-baseline.pdf',
+      },
+    ],
+    overallProgress: 60,
+    createdAt: new Date('2024-02-15'),
+    updatedAt: new Date('2024-11-20'),
+    createdBy: 'Priya Sharma',
+  },
+  {
+    id: 'proj-2',
+    name: 'Annual Fundraising Campaign 2024-25',
+    description: 'Year-end fundraising campaign targeting individual and corporate donors to raise funds for operational expenses and new program initiatives.',
+    type: 'Fundraiser',
+    category: 'Community Development',
+    status: 'Active',
+    startDate: new Date('2024-09-01'),
+    endDate: new Date('2025-03-31'),
+    duration: '7 months',
+    location: ['Online', 'Bangalore', 'Multiple Cities'],
+    district: 'Multiple',
+    state: 'Pan-India',
+    
+    // KC-specific: Creator & Community
+    startedBy: 'Anjali Reddy',
+    followers: 1240,
+    activeMembers: 12,
+    
+    totalBudget: 25000000,
+    totalSpent: 8500000,
+    budgetLines: [
+      {
+        id: 'bl-2-1',
+        category: 'Marketing & Communications',
+        budgeted: 3000000,
+        spent: 1800000,
+        description: 'Digital marketing, social media, print materials',
+      },
+      {
+        id: 'bl-2-2',
+        category: 'Events',
+        budgeted: 2000000,
+        spent: 1200000,
+        description: 'Fundraising events, donor engagement activities',
+      },
+      {
+        id: 'bl-2-3',
+        category: 'Technology',
+        budgeted: 500000,
+        spent: 300000,
+        description: 'Donation platform, CRM tools',
+      },
+    ],
+    fundingSources: [
+      { source: 'Target: Individual Donors', amount: 15000000, type: 'Donation' },
+      { source: 'Target: Corporate CSR', amount: 10000000, type: 'Corporate' },
+    ],
+    
+    // KC-specific: Funding Goals
+    moneyRequired: 25000000,
+    moneyRaised: 16500000,
+    
+    projectManager: 'Anjali Reddy',
+    teamMembers: ['Priya Sharma', 'Rajesh Kumar', 'Deepa Singh'],
+    
+    // KC-specific: Team Goals
+    membersRequired: 15,
+    membersJoined: 12,
+    
+    objectives: [
+      'Raise Rs 25 Crores for organizational programs',
+      'Acquire 500 new monthly donors',
+      'Engage 50 corporate partners',
+      'Increase donor retention by 25%',
+      'Host 10 fundraising events',
+    ],
+    expectedImpact: 'Raise Rs 25 Crores to support operational programs and reach 5,000 more beneficiaries',
+    impactMetrics: [
+      { id: 'im-2-1', indicator: 'Funds Raised', target: 25000000, achieved: 16500000, unit: 'INR' },
+      { id: 'im-2-2', indicator: 'New Monthly Donors', target: 500, achieved: 320, unit: 'donors' },
+      { id: 'im-2-3', indicator: 'Corporate Partners', target: 50, achieved: 28, unit: 'companies' },
+      { id: 'im-2-4', indicator: 'Fundraising Events', target: 10, achieved: 6, unit: 'events' },
+    ],
+    milestones: [
+      {
+        id: 'ms-2-1',
+        title: 'Campaign Launch',
+        description: 'Launch campaign with digital and print materials',
+        dueDate: new Date('2024-09-15'),
+        completedDate: new Date('2024-09-12'),
+        status: 'Completed',
+        assignedTo: 'Anjali Reddy',
+      },
+      {
+        id: 'ms-2-2',
+        title: 'Mid-Campaign Review',
+        description: 'Assess progress and adjust strategy',
+        dueDate: new Date('2024-12-15'),
+        completedDate: new Date('2024-12-10'),
+        status: 'Completed',
+        assignedTo: 'Priya Sharma',
+      },
+      {
+        id: 'ms-2-3',
+        title: 'Year-End Push',
+        description: 'Intensive outreach for year-end giving',
+        dueDate: new Date('2024-12-31'),
+        status: 'In Progress',
+        assignedTo: 'Rajesh Kumar',
+      },
+      {
+        id: 'ms-2-4',
+        title: 'Corporate Engagement Events',
+        description: 'Host events for corporate partners',
+        dueDate: new Date('2025-02-28'),
+        status: 'Not Started',
+        assignedTo: 'Deepa Singh',
+      },
+    ],
+    linkedDonors: ['1', '2', '3', '4', '5'],
+    linkedBeneficiaries: [],
+    linkedCampaigns: [],
+    documents: [
+      {
+        id: 'doc-2-1',
+        name: 'Campaign Strategy.pdf',
+        type: 'Strategy',
+        uploadDate: new Date('2024-08-15'),
+        url: '/documents/campaign-strategy.pdf',
+      },
+    ],
+    overallProgress: 66,
+    createdAt: new Date('2024-08-01'),
+    updatedAt: new Date('2024-11-23'),
+    createdBy: 'Anjali Reddy',
+  },
+  {
+    id: 'proj-3',
+    name: 'Women Empowerment & Livelihood Program',
+    description: 'Skills training and livelihood support program for rural women focusing on tailoring, handicrafts, financial literacy, and self-help group formation.',
+    type: 'Education & Training',
+    category: 'Livelihood',
+    status: 'Active',
+    startDate: new Date('2024-01-15'),
+    endDate: new Date('2024-12-31'),
+    duration: '12 months',
+    location: ['Ramanagara', 'Kolar', 'Tumkur'],
+    district: 'Multiple',
+    state: 'Karnataka',
+    
+    // KC-specific: Creator & Community
+    startedBy: 'Priya Sharma',
+    followers: 367,
+    activeMembers: 18,
+    
+    totalBudget: 5000000,
+    totalSpent: 2800000,
+    budgetLines: [
+      {
+        id: 'bl-3-1',
+        category: 'Training Materials & Equipment',
+        budgeted: 2000000,
+        spent: 1200000,
+        description: 'Sewing machines, raw materials, training kits',
+      },
+      {
+        id: 'bl-3-2',
+        category: 'Trainer Fees',
+        budgeted: 1500000,
+        spent: 800000,
+        description: 'Master trainers and instructors',
+      },
+      {
+        id: 'bl-3-3',
+        category: 'SHG Formation & Support',
+        budgeted: 1000000,
+        spent: 600000,
+        description: 'SHG capacity building, seed funding',
+      },
+      {
+        id: 'bl-3-4',
+        category: 'Administration',
+        budgeted: 500000,
+        spent: 200000,
+        description: 'Program coordination, monitoring',
+      },
+    ],
+    fundingSources: [
+      { source: 'State Government Scheme', amount: 3000000, type: 'Government' },
+      { source: 'Foundation Grant', amount: 2000000, type: 'Grant' },
+    ],
+    
+    // KC-specific: Funding Goals
+    moneyRequired: 5000000,
+    moneyRaised: 5000000,
+    
+    projectManager: 'Priya Sharma',
+    teamMembers: ['Anjali Reddy', 'Kavita Menon', 'Sunita Rao'],
+    
+    // KC-specific: Team Goals
+    membersRequired: 25,
+    membersJoined: 18,
+    
+    objectives: [
+      'Train 200 women in marketable skills',
+      'Establish 50 self-help groups',
+      'Increase household income by 30%',
+      'Facilitate market linkages for 100 women',
+      'Provide financial literacy training to all participants',
+    ],
+    expectedImpact: '200+ women trained in marketable skills, increasing household income by 30% and achieving economic independence',
+    impactMetrics: [
+      { id: 'im-3-1', indicator: 'Women Trained', target: 200, achieved: 156, unit: 'women' },
+      { id: 'im-3-2', indicator: 'SHGs Formed', target: 50, achieved: 38, unit: 'groups' },
+      { id: 'im-3-3', indicator: 'Women Earning Income', target: 150, achieved: 89, unit: 'women' },
+      { id: 'im-3-4', indicator: 'Average Income Increase', target: 30, achieved: 22, unit: '%' },
+    ],
+    beneficiaryTarget: 200,
+    beneficiariesReached: 156,
+    milestones: [
+      {
+        id: 'ms-3-1',
+        title: 'Participant Selection',
+        description: 'Complete beneficiary selection process',
+        dueDate: new Date('2024-02-28'),
+        completedDate: new Date('2024-02-25'),
+        status: 'Completed',
+        assignedTo: 'Anjali Reddy',
+      },
+      {
+        id: 'ms-3-2',
+        title: 'Basic Training Phase',
+        description: 'Complete foundational skills training',
+        dueDate: new Date('2024-06-30'),
+        completedDate: new Date('2024-07-10'),
+        status: 'Completed',
+        assignedTo: 'Kavita Menon',
+      },
+      {
+        id: 'ms-3-3',
+        title: 'Advanced Training Phase',
+        description: 'Advanced skills and business training',
+        dueDate: new Date('2024-10-31'),
+        status: 'In Progress',
+        assignedTo: 'Kavita Menon',
+      },
+      {
+        id: 'ms-3-4',
+        title: 'Market Linkage Establishment',
+        description: 'Connect trained women with buyers and markets',
+        dueDate: new Date('2024-12-15'),
+        status: 'Not Started',
+        assignedTo: 'Sunita Rao',
+      },
+    ],
+    linkedDonors: ['1'],
+    linkedBeneficiaries: ['ben-1', 'ben-7'],
+    linkedCampaigns: [],
+    documents: [
+      {
+        id: 'doc-3-1',
+        name: 'Curriculum Guide.pdf',
+        type: 'Training Material',
+        uploadDate: new Date('2024-01-20'),
+        url: '/documents/curriculum.pdf',
+      },
+    ],
+    overallProgress: 75,
+    createdAt: new Date('2023-11-01'),
+    updatedAt: new Date('2024-11-20'),
+    createdBy: 'Priya Sharma',
+  },
+  {
+    id: 'proj-4',
+    name: 'Reforestation Drive 2024',
+    description: 'Large-scale tree plantation initiative targeting degraded forest areas and urban spaces with native species, including community engagement and long-term monitoring.',
+    type: 'Environmental Conservation',
+    category: 'Environment',
+    status: 'Active',
+    startDate: new Date('2024-06-01'),
+    endDate: new Date('2025-05-31'),
+    duration: '12 months',
+    location: ['Bangalore', 'Shimoga', 'Chickmagalur', 'Coorg'],
+    district: 'Multiple',
+    state: 'Karnataka',
+    
+    // KC-specific: Creator & Community
+    startedBy: 'Arun Reddy',
+    followers: 523,
+    activeMembers: 45,
+    
+    totalBudget: 8000000,
+    totalSpent: 3200000,
+    budgetLines: [
+      {
+        id: 'bl-4-1',
+        category: 'Saplings & Materials',
+        budgeted: 4000000,
+        spent: 1800000,
+        description: 'Native saplings, tools, fencing materials',
+      },
+      {
+        id: 'bl-4-2',
+        category: 'Community Mobilization',
+        budgeted: 2000000,
+        spent: 800000,
+        description: 'Awareness campaigns, volunteer coordination',
+      },
+      {
+        id: 'bl-4-3',
+        category: 'Monitoring & Maintenance',
+        budgeted: 1500000,
+        spent: 400000,
+        description: 'First year care, survival monitoring',
+      },
+      {
+        id: 'bl-4-4',
+        category: 'Staff & Operations',
+        budgeted: 500000,
+        spent: 200000,
+        description: 'Project staff, transportation',
+      },
+    ],
+    fundingSources: [
+      { source: 'Corporate CSR', amount: 5000000, type: 'Corporate' },
+      { source: 'Individual Donors', amount: 2000000, type: 'Donation' },
+      { source: 'Forest Department Partnership', amount: 1000000, type: 'Government' },
+    ],
+    
+    // KC-specific: Funding Goals
+    moneyRequired: 8000000,
+    moneyRaised: 7500000,
+    
+    projectManager: 'Arun Reddy',
+    teamMembers: ['Vandana Sharma', 'Mohan Babu', 'Environmental Specialists'],
+    
+    // KC-specific: Team Goals
+    membersRequired: 50,
+    membersJoined: 45,
+    
+    objectives: [
+      'Plant 50,000 native trees',
+      'Achieve 80% sapling survival rate',
+      'Engage 2,000 volunteers',
+      'Restore 100 acres of degraded land',
+      'Create 10 urban micro-forests',
+    ],
+    expectedImpact: '50,000 trees planted across 100 acres, improving air quality and biodiversity while engaging 2,000 volunteers',
+    impactMetrics: [
+      { id: 'im-4-1', indicator: 'Trees Planted', target: 50000, achieved: 28500, unit: 'trees' },
+      { id: 'im-4-2', indicator: 'Survival Rate', target: 80, achieved: 75, unit: '%' },
+      { id: 'im-4-3', indicator: 'Volunteers Engaged', target: 2000, achieved: 1250, unit: 'people' },
+      { id: 'im-4-4', indicator: 'Land Restored', target: 100, achieved: 45, unit: 'acres' },
+    ],
+    beneficiaryTarget: 300,
+    beneficiariesReached: 187,
+    milestones: [
+      {
+        id: 'ms-4-1',
+        title: 'Site Selection & Preparation',
+        description: 'Identify and prepare planting sites',
+        dueDate: new Date('2024-07-15'),
+        completedDate: new Date('2024-07-10'),
+        status: 'Completed',
+        assignedTo: 'Vandana Sharma',
+      },
+      {
+        id: 'ms-4-2',
+        title: 'Monsoon Plantation Phase',
+        description: 'Plant 30,000 saplings during monsoon',
+        dueDate: new Date('2024-09-30'),
+        completedDate: new Date('2024-10-05'),
+        status: 'Completed',
+        assignedTo: 'Mohan Babu',
+      },
+      {
+        id: 'ms-4-3',
+        title: 'Winter Plantation Phase',
+        description: 'Plant remaining 20,000 saplings',
+        dueDate: new Date('2025-01-31'),
+        status: 'In Progress',
+        assignedTo: 'Vandana Sharma',
+      },
+      {
+        id: 'ms-4-4',
+        title: 'First Year Monitoring',
+        description: 'Complete survival assessment',
+        dueDate: new Date('2025-05-31'),
+        status: 'Not Started',
+        assignedTo: 'Environmental Specialists',
+      },
+    ],
+    linkedDonors: ['3', '4'],
+    linkedBeneficiaries: ['ben-5'],
+    linkedCampaigns: [],
+    documents: [],
+    overallProgress: 57,
+    createdAt: new Date('2024-04-15'),
+    updatedAt: new Date('2024-11-22'),
+    createdBy: 'Arun Reddy',
+  },
+  {
+    id: 'proj-5',
+    name: 'Child Education Support Program',
+    description: 'Comprehensive education support including scholarships, school supplies, nutrition, and remedial classes for underprivileged children in urban slums.',
+    type: 'Education & Training',
+    category: 'Education',
+    status: 'Active',
+    startDate: new Date('2023-06-01'),
+    endDate: new Date('2026-05-31'),
+    duration: '36 months',
+    location: ['Bangalore Urban', 'Bangalore Rural'],
+    district: 'Bangalore',
+    state: 'Karnataka',
+    
+    // KC-specific: Creator & Community
+    startedBy: 'Rajesh Kumar',
+    followers: 678,
+    activeMembers: 52,
+    
+    totalBudget: 15000000,
+    totalSpent: 8900000,
+    budgetLines: [
+      {
+        id: 'bl-5-1',
+        category: 'Scholarships & School Fees',
+        budgeted: 6000000,
+        spent: 3500000,
+        description: 'Direct financial support for education',
+      },
+      {
+        id: 'bl-5-2',
+        category: 'Nutrition Program',
+        budgeted: 5000000,
+        spent: 3000000,
+        description: 'Daily nutritious meals',
+      },
+      {
+        id: 'bl-5-3',
+        category: 'Learning Materials',
+        budgeted: 2000000,
+        spent: 1200000,
+        description: 'Books, uniforms, stationery',
+      },
+      {
+        id: 'bl-5-4',
+        category: 'Teachers & Infrastructure',
+        budgeted: 2000000,
+        spent: 1200000,
+        description: 'Remedial teachers, learning center operations',
+      },
+    ],
+    fundingSources: [
+      { source: 'Multiple Individual Donors', amount: 8000000, type: 'Donation' },
+      { source: 'Corporate Partnership', amount: 5000000, type: 'Corporate' },
+      { source: 'Foundation Grant', amount: 2000000, type: 'Grant' },
+    ],
+    
+    // KC-specific: Funding Goals
+    moneyRequired: 15000000,
+    moneyRaised: 14200000,
+    
+    projectManager: 'Rajesh Kumar',
+    teamMembers: ['Deepa Singh', 'Meera Patel', 'Suresh Nair', 'Teaching Staff'],
+    
+    // KC-specific: Team Goals
+    membersRequired: 60,
+    membersJoined: 52,
+    
+    objectives: [
+      'Support 500 children with education',
+      'Provide daily meals to 500 children',
+      'Achieve 90% school attendance',
+      'Ensure 95% pass rate in annual exams',
+      'Improve learning levels by 40%',
+    ],
+    expectedImpact: '500 children supported with quality education, daily nutrition, and learning materials, achieving 95% pass rate',
+    impactMetrics: [
+      { id: 'im-5-1', indicator: 'Children Supported', target: 500, achieved: 478, unit: 'children' },
+      { id: 'im-5-2', indicator: 'School Attendance', target: 90, achieved: 87, unit: '%' },
+      { id: 'im-5-3', indicator: 'Pass Rate', target: 95, achieved: 92, unit: '%' },
+      { id: 'im-5-4', indicator: 'Daily Meals Served', target: 500, achieved: 478, unit: 'meals/day' },
+    ],
+    beneficiaryTarget: 500,
+    beneficiariesReached: 478,
+    milestones: [
+      {
+        id: 'ms-5-1',
+        title: 'Year 1 Completion',
+        description: 'Complete first year operations',
+        dueDate: new Date('2024-05-31'),
+        completedDate: new Date('2024-06-05'),
+        status: 'Completed',
+        assignedTo: 'Rajesh Kumar',
+      },
+      {
+        id: 'ms-5-2',
+        title: 'Mid-Term Assessment',
+        description: 'Evaluate program impact and adjust strategy',
+        dueDate: new Date('2024-12-31'),
+        status: 'In Progress',
+        assignedTo: 'Deepa Singh',
+      },
+      {
+        id: 'ms-5-3',
+        title: 'Year 3 Scaling',
+        description: 'Expand to additional locations',
+        dueDate: new Date('2025-06-30'),
+        status: 'Not Started',
+        assignedTo: 'Rajesh Kumar',
+      },
+    ],
+    linkedDonors: ['5'],
+    linkedBeneficiaries: ['ben-2', 'ben-6'],
+    linkedCampaigns: [],
+    documents: [
+      {
+        id: 'doc-5-1',
+        name: 'Annual Progress Report 2023-24.pdf',
+        type: 'Report',
+        uploadDate: new Date('2024-06-15'),
+        url: '/documents/education-annual-report.pdf',
+      },
+    ],
+    overallProgress: 85,
+    createdAt: new Date('2023-04-15'),
+    updatedAt: new Date('2024-11-23'),
+    createdBy: 'Rajesh Kumar',
+  },
+];
+
+export const mockProjectCategories = Array.from(
+  new Set(mockProjects.map((p) => p.category))
+);
+
+export const mockProjectManagers = Array.from(
+  new Set(mockProjects.map((p) => p.projectManager))
+);
+
