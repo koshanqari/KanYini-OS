@@ -42,7 +42,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
         <div className="text-center">
           <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Project Not Found</h2>
-          <p className="text-gray-600">The project you're looking for doesn't exist.</p>
+          <p className="text-gray-600">The project you&apos;re looking for doesn&apos;t exist.</p>
         </div>
       </div>
     );
@@ -325,7 +325,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {project.location.map((loc, idx) => (
-                    <Badge key={idx} variant="secondary">
+                    <Badge key={idx} variant="info">
                       <MapPin className="w-3 h-3 mr-1" />
                       {loc}
                     </Badge>
@@ -642,7 +642,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             {linkedDonors.length > 0 ? (
               <div className="space-y-4">
                 {linkedDonors.map((donor) => {
-                  const totalContributions = donor.totalDonations || 0;
+                  const totalContributions = donor.totalDonated || 0;
                   return (
                     <div
                       key={donor.id}
@@ -662,16 +662,16 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                               <h4 className="font-medium text-gray-900">{donor.name}</h4>
                               <Badge
                                 variant={
-                                  donor.tier === 'Major'
+                                  donor.tier === 'major'
                                     ? 'success'
-                                    : donor.tier === 'Regular'
+                                    : donor.tier === 'regular'
                                     ? 'info'
                                     : 'default'
                                 }
                               >
                                 {donor.tier} Donor
                               </Badge>
-                              <Badge variant="secondary">{donor.type}</Badge>
+                              <Badge variant="info">{donor.type}</Badge>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4 mt-3">
@@ -685,13 +685,15 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                                   {donor.phone}
                                 </div>
                               )}
-                              <div className="flex items-center gap-2 text-sm text-gray-600">
-                                <MapPin className="w-4 h-4" />
-                                {donor.city}, {donor.state}
-                              </div>
+                              {donor.address && (
+                                <div className="flex items-center gap-2 text-sm text-gray-600">
+                                  <MapPin className="w-4 h-4" />
+                                  {donor.address}
+                                </div>
+                              )}
                               <div className="flex items-center gap-2 text-sm text-gray-600">
                                 <Activity className="w-4 h-4" />
-                                Engagement: {donor.engagementLevel || 'Medium'}
+                                Total Donated: ${totalContributions.toLocaleString()}
                               </div>
                             </div>
                           </div>
@@ -704,7 +706,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                             ₹{(totalContributions / 100000).toFixed(1)}L
                           </div>
                           <div className="text-xs text-gray-500 mt-1">
-                            {donor.donations?.length || 0} donations
+                            Total Contribution
                           </div>
                         </div>
                       </div>
@@ -716,7 +718,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
               <div className="text-center py-12 text-gray-500">
                 <Heart className="w-16 h-16 mx-auto mb-4 text-gray-400" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No Donors Linked</h3>
-                <p className="text-sm mb-4">This project doesn't have any linked donors yet.</p>
+                <p className="text-sm mb-4">This project doesn&apos;t have any linked donors yet.</p>
                 <Button variant="primary" size="sm">
                   Link First Donor
                 </Button>
@@ -741,6 +743,9 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             {linkedBeneficiaries.length > 0 ? (
               <div className="space-y-4">
                 {linkedBeneficiaries.map((beneficiary) => {
+                  const displayName = beneficiary.type === 'Individual' 
+                    ? `${beneficiary.firstName} ${beneficiary.lastName}` 
+                    : beneficiary.organizationDetails?.organizationName || 'Organization';
                   return (
                     <div
                       key={beneficiary.id}
@@ -750,13 +755,13 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                       <div className="flex items-start gap-4">
                         {/* Avatar */}
                         <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
-                          {beneficiary.name.charAt(0)}
+                          {displayName.charAt(0)}
                         </div>
 
                         {/* Beneficiary Info */}
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
-                            <h4 className="font-medium text-gray-900">{beneficiary.name}</h4>
+                            <h4 className="font-medium text-gray-900">{displayName}</h4>
                             <Badge
                               variant={
                                 beneficiary.status === 'Active'
@@ -770,7 +775,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                             >
                               {beneficiary.status}
                             </Badge>
-                            <Badge variant="secondary">{beneficiary.type}</Badge>
+                            <Badge variant="info">{beneficiary.type}</Badge>
                           </div>
 
                           <div className="grid grid-cols-3 gap-4 mt-3">
@@ -789,7 +794,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                             <div>
                               <div className="text-xs text-gray-500">Location</div>
                               <div className="text-sm font-medium text-gray-900">
-                                {beneficiary.city || beneficiary.district}
+                                {beneficiary.address?.district || 'N/A'}
                               </div>
                             </div>
                             <div>
@@ -808,26 +813,6 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                             )}
                           </div>
 
-                          {/* Service Summary */}
-                          {beneficiary.serviceHistory && beneficiary.serviceHistory.length > 0 && (
-                            <div className="mt-3 pt-3 border-t">
-                              <div className="text-xs text-gray-500 mb-1">Recent Services</div>
-                              <div className="flex flex-wrap gap-1">
-                                {beneficiary.serviceHistory
-                                  .slice(0, 3)
-                                  .map((service) => (
-                                    <Badge key={service.id} variant="secondary" className="text-xs">
-                                      {service.serviceType}
-                                    </Badge>
-                                  ))}
-                                {beneficiary.serviceHistory.length > 3 && (
-                                  <Badge variant="secondary" className="text-xs">
-                                    +{beneficiary.serviceHistory.length - 3} more
-                                  </Badge>
-                                )}
-                              </div>
-                            </div>
-                          )}
                         </div>
                       </div>
                     </div>
@@ -838,7 +823,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
               <div className="text-center py-12 text-gray-500">
                 <Users className="w-16 h-16 mx-auto mb-4 text-gray-400" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No Beneficiaries Linked</h3>
-                <p className="text-sm mb-4">This project doesn't have any linked beneficiaries yet.</p>
+                <p className="text-sm mb-4">This project doesn&apos;t have any linked beneficiaries yet.</p>
                 <Button variant="primary" size="sm">
                   Link First Beneficiary
                 </Button>

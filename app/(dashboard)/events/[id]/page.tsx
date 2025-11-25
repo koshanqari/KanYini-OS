@@ -36,7 +36,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
         <div className="text-center">
           <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Event Not Found</h2>
-          <p className="text-gray-600">The event you're looking for doesn't exist.</p>
+          <p className="text-gray-600">The event you&apos;re looking for doesn&apos;t exist.</p>
         </div>
       </div>
     );

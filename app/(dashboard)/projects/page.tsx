@@ -61,7 +61,7 @@ export default function ProjectsPage() {
   const activeProjects = mockProjects.filter((p) => p.status === 'Active').length;
   const totalBudget = mockProjects.reduce((sum, p) => sum + p.totalBudget, 0);
   const totalSpent = mockProjects.reduce((sum, p) => sum + p.totalSpent, 0);
-  const totalBeneficiaries = mockProjects.reduce((sum, p) => sum + p.beneficiariesReached, 0);
+  const totalBeneficiaries = mockProjects.reduce((sum, p) => sum + (p.beneficiariesReached || 0), 0);
 
   const getStatusBadge = (status: ProjectStatus) => {
     const variants: Record<ProjectStatus, 'success' | 'info' | 'warning' | 'error' | 'default'> = {

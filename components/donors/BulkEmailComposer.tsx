@@ -150,12 +150,12 @@ export function BulkEmailComposer({ isOpen, onClose, recipients, onSend }: BulkE
           </div>
           <div className="flex flex-wrap gap-2 max-h-24 overflow-y-auto">
             {recipients.slice(0, 10).map((recipient) => (
-              <Badge key={recipient.id} variant="secondary">
+              <Badge key={recipient.id} variant="info">
                 {recipient.name}
               </Badge>
             ))}
             {recipients.length > 10 && (
-              <Badge variant="secondary">+{recipients.length - 10} more</Badge>
+              <Badge variant="info">+{recipients.length - 10} more</Badge>
             )}
           </div>
         </div>

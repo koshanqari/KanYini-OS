@@ -153,14 +153,14 @@ export default function CreatePostPage() {
                 value={projectId}
                 onChange={(e) => setProjectId(e.target.value)}
                 required
-              >
-                <option value="">Select a project</option>
-                {mockProjects.map((project) => (
-                  <option key={project.id} value={project.id}>
-                    {project.name}
-                  </option>
-                ))}
-              </Select>
+                options={[
+                  { value: '', label: 'Select a project' },
+                  ...mockProjects.map((project) => ({
+                    value: project.id,
+                    label: project.name,
+                  })),
+                ]}
+              />
             </div>
 
             {/* Content */}
@@ -214,7 +214,7 @@ export default function CreatePostPage() {
                       </p>
                       <Button
                         type="button"
-                        variant="outline"
+                        variant="secondary"
                         size="sm"
                         onClick={() => setMediaFile(null)}
                       >
@@ -237,10 +237,10 @@ export default function CreatePostPage() {
                         className="hidden"
                         id="media-upload"
                       />
-                      <label htmlFor="media-upload">
-                        <Button type="button" size="sm" as="span">
+                      <label htmlFor="media-upload" className="cursor-pointer">
+                        <span className="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg bg-kanyini-primary text-white hover:bg-green-700 transition">
                           Choose File
-                        </Button>
+                        </span>
                       </label>
                     </div>
                   )}
@@ -256,10 +256,11 @@ export default function CreatePostPage() {
               <Select
                 value={status}
                 onChange={(e) => setStatus(e.target.value as any)}
-              >
-                <option value="Draft">Save as Draft</option>
-                <option value="Published">Publish Immediately</option>
-              </Select>
+                options={[
+                  { value: 'Draft', label: 'Save as Draft' },
+                  { value: 'Published', label: 'Publish Immediately' },
+                ]}
+              />
               <p className="text-sm text-gray-600 mt-2">
                 {status === 'Draft' 
                   ? 'Post will be saved but not visible to users' 
@@ -273,7 +274,7 @@ export default function CreatePostPage() {
         <div className="flex items-center justify-between">
           <Button
             type="button"
-            variant="outline"
+            variant="secondary"
             onClick={() => router.push('/posts')}
           >
             Cancel
@@ -281,7 +282,7 @@ export default function CreatePostPage() {
           <div className="flex items-center gap-3">
             <Button
               type="button"
-              variant="outline"
+              variant="secondary"
               onClick={() => {
                 setStatus('Draft');
                 handleSubmit(new Event('submit') as any);

@@ -136,13 +136,14 @@ export default function CreateEventPage() {
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                     required
-                  >
-                    <option value="workshop">Workshop</option>
-                    <option value="meetup">Meetup</option>
-                    <option value="webinar">Webinar</option>
-                    <option value="conference">Conference</option>
-                    <option value="social">Social</option>
-                  </Select>
+                    options={[
+                      { value: 'workshop', label: 'Workshop' },
+                      { value: 'meetup', label: 'Meetup' },
+                      { value: 'webinar', label: 'Webinar' },
+                      { value: 'conference', label: 'Conference' },
+                      { value: 'social', label: 'Social' },
+                    ]}
+                  />
                 </div>
 
                 <div>
@@ -151,12 +152,13 @@ export default function CreateEventPage() {
                     value={formData.status}
                     onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                     required
-                  >
-                    <option value="Upcoming">Upcoming</option>
-                    <option value="Ongoing">Ongoing</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Cancelled">Cancelled</option>
-                  </Select>
+                    options={[
+                      { value: 'Upcoming', label: 'Upcoming' },
+                      { value: 'Ongoing', label: 'Ongoing' },
+                      { value: 'Completed', label: 'Completed' },
+                      { value: 'Cancelled', label: 'Cancelled' },
+                    ]}
+                  />
                 </div>
 
                 <div>
@@ -167,14 +169,14 @@ export default function CreateEventPage() {
                     value={formData.projectId}
                     onChange={(e) => setFormData({ ...formData, projectId: e.target.value })}
                     required
-                  >
-                    <option value="">Select a project</option>
-                    {mockProjects.map((project) => (
-                      <option key={project.id} value={project.id}>
-                        {project.name}
-                      </option>
-                    ))}
-                  </Select>
+                    options={[
+                      { value: '', label: 'Select a project' },
+                      ...mockProjects.map((project) => ({
+                        value: project.id,
+                        label: project.name,
+                      })),
+                    ]}
+                  />
                 </div>
               </div>
             </div>

@@ -605,69 +605,7 @@ export const mockCampaigns: Campaign[] = [
   },
 ];
 
-// Mock Projects
-export const mockProjects: Project[] = [
-  {
-    id: '1',
-    name: 'Urban Reforestation - Mumbai',
-    description: 'Planting native trees across Mumbai metropolitan area to improve air quality and biodiversity',
-    category: 'reforestation',
-    status: 'active',
-    startDate: new Date('2025-10-01'),
-    endDate: new Date('2026-03-31'),
-    location: 'Mumbai, Maharashtra',
-    budget: 2500000,
-    spent: 980000,
-    progress: 45,
-    leadId: '1',
-    teamMembers: ['1', '2', '3'],
-  },
-  {
-    id: '2',
-    name: 'Rainwater Harvesting - Rajasthan',
-    description: 'Installing rainwater harvesting systems in rural communities',
-    category: 'water_conservation',
-    status: 'active',
-    startDate: new Date('2025-11-01'),
-    endDate: new Date('2026-06-30'),
-    location: 'Jodhpur, Rajasthan',
-    budget: 3500000,
-    spent: 650000,
-    progress: 20,
-    leadId: '2',
-    teamMembers: ['2', '4'],
-  },
-  {
-    id: '3',
-    name: 'Organic Farming Training',
-    description: 'Training program for farmers on sustainable organic farming practices',
-    category: 'education',
-    status: 'planning',
-    startDate: new Date('2026-01-01'),
-    endDate: new Date('2026-12-31'),
-    location: 'Punjab',
-    budget: 1500000,
-    spent: 0,
-    progress: 0,
-    leadId: '3',
-    teamMembers: ['3'],
-  },
-  {
-    id: '4',
-    name: 'Coastal Mangrove Restoration',
-    description: 'Restoring mangrove forests along Kerala coastline',
-    category: 'reforestation',
-    status: 'completed',
-    startDate: new Date('2024-06-01'),
-    endDate: new Date('2025-05-31'),
-    location: 'Kerala',
-    budget: 1800000,
-    spent: 1750000,
-    progress: 100,
-    leadId: '1',
-    teamMembers: ['1', '2'],
-  },
-];
+// Mock Projects - REMOVED: Using mockProjects from projectMockData.ts instead
 
 // Mock Tasks
 export const mockTasks: Task[] = [

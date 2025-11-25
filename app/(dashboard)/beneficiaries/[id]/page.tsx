@@ -48,7 +48,7 @@ export default function BeneficiaryProfilePage({
         <div className="text-center">
           <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Beneficiary Not Found</h2>
-          <p className="text-gray-600">The beneficiary you're looking for doesn't exist.</p>
+          <p className="text-gray-600">The beneficiary you&apos;re looking for doesn&apos;t exist.</p>
         </div>
       </div>
     );
@@ -84,7 +84,7 @@ export default function BeneficiaryProfilePage({
                 >
                   {beneficiary.status}
                 </Badge>
-                <Badge variant="secondary">{beneficiary.type}</Badge>
+                <Badge variant="default">{beneficiary.type}</Badge>
                 {beneficiary.type === 'Individual' ? (
                   <span className="text-gray-600">
                     {beneficiary.age} years • {beneficiary.gender}
@@ -481,7 +481,7 @@ export default function BeneficiaryProfilePage({
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
                     {beneficiary.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
+                      <Badge key={tag} variant="info">
                         {tag}
                       </Badge>
                     ))}

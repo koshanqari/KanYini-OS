@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/Textarea';
 import { BackButton } from '@/components/ui/BackButton';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { mockProjects } from '@/data/mockData';
+import { mockProjects } from '@/data/projectMockData';
 
 export default function CreateCampaignPage() {
   const router = useRouter();

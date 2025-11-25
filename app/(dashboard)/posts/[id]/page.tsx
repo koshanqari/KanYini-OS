@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -43,7 +44,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
           <div className="text-center">
             <AlertCircle className="w-12 h-12 mx-auto mb-4 text-gray-400" />
             <h2 className="text-xl font-semibold text-gray-900 mb-2">Post Not Found</h2>
-            <p className="text-gray-600 mb-6">The post you're looking for doesn't exist.</p>
+            <p className="text-gray-600 mb-6">The post you&apos;re looking for doesn&apos;t exist.</p>
             <Button onClick={() => router.push('/posts')}>Back to Posts</Button>
           </div>
         </Card>
@@ -90,14 +91,14 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
 
         <div className="flex items-center gap-2">
           <Button
-            variant="outline"
+            variant="secondary"
             onClick={() => router.push(`/posts/${post.id}/edit`)}
           >
             <Edit className="w-4 h-4 mr-2" />
             Edit
           </Button>
           <Button
-            variant="outline"
+            variant="secondary"
             onClick={() => {
               if (confirm('Are you sure you want to delete this post?')) {
                 alert('Post deleted!');
@@ -139,7 +140,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
                   </Button>
                   <Button
                     size="sm"
-                    variant="outline"
+                    variant="secondary"
                     onClick={() => {
                       setModerationAction('reject');
                       setShowModerationModal(true);
@@ -168,17 +169,21 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
             {post.mediaUrl && (
               <div className="mb-4 rounded-lg overflow-hidden">
                 {post.type === 'photo' ? (
-                  <img
-                    src={post.mediaUrl}
-                    alt="Post media"
-                    className="w-full h-auto"
-                  />
+                  <div className="relative w-full aspect-video">
+                    <Image
+                      src={post.mediaUrl}
+                      alt="Post media"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 ) : post.type === 'video' ? (
                   <div className="relative bg-gray-100 aspect-video">
-                    <img
-                      src={post.mediaThumbnail}
+                    <Image
+                      src={post.mediaThumbnail || '/placeholder.jpg'}
                       alt="Video thumbnail"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-16 h-16 bg-black/50 rounded-full flex items-center justify-center">
@@ -395,7 +400,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
 
           <div className="flex items-center justify-end gap-3 pt-4 border-t">
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={() => setShowModerationModal(false)}
             >
               Cancel

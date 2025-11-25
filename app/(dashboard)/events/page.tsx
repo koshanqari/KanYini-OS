@@ -236,7 +236,7 @@ export default function EventsPage() {
               <div className="p-6">
                 {/* Project Header */}
                 <div className="mb-4">
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge variant="info" className="text-xs">
                     {event.projectName}
                   </Badge>
                 </div>

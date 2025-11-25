@@ -203,7 +203,7 @@ export default function DonorsPage() {
                 {atRiskDonors.length} donors at risk of lapsing
               </div>
               <div className="text-sm text-yellow-800 mt-1">
-                These donors haven't given in 6+ months. Consider reaching out.
+                These donors haven&apos;t given in 6+ months. Consider reaching out.
               </div>
             </div>
             <Button variant="secondary" size="sm">

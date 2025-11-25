@@ -3,7 +3,8 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { StatsCard } from '@/components/dashboard/StatsCard';
 import { TreePine, Droplets, Users, MapPin } from 'lucide-react';
-import { dashboardStats, mockProjects } from '@/data/mockData';
+import { dashboardStats } from '@/data/mockData';
+import { mockProjects } from '@/data/projectMockData';
 import { formatNumber } from '@/lib/utils';
 
 export default function ImpactDashboardPage() {
@@ -114,7 +115,7 @@ export default function ImpactDashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {mockProjects.filter(p => p.status === 'active' || p.status === 'completed').map((project) => (
+            {mockProjects.filter(p => p.status === 'Active' || p.status === 'Completed').map((project) => (
               <div key={project.id} className="border rounded-lg p-4">
                 <div className="flex items-start justify-between mb-3">
                   <div>
@@ -122,7 +123,7 @@ export default function ImpactDashboardPage() {
                     <div className="text-sm text-gray-500">{project.location}</div>
                   </div>
                   <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                    project.status === 'completed' 
+                    project.status === 'Completed' 
                       ? 'bg-green-100 text-green-800'
                       : 'bg-blue-100 text-blue-800'
                   }`}>
@@ -133,12 +134,14 @@ export default function ImpactDashboardPage() {
                   <div>
                     <div className="text-xs text-gray-500">Impact</div>
                     <div className="text-sm font-bold text-gray-900">
-                      {project.category === 'reforestation' ? '2,500 trees' : '450 people'}
+                      {project.category === 'Environment' ? '2,500 trees' : '450 people'}
                     </div>
                   </div>
                   <div>
                     <div className="text-xs text-gray-500">Progress</div>
-                    <div className="text-sm font-bold text-gray-900">{project.progress}%</div>
+                    <div className="text-sm font-bold text-gray-900">
+                      {Math.round((project.totalSpent / project.totalBudget) * 100)}%
+                    </div>
                   </div>
                   <div>
                     <div className="text-xs text-gray-500">Duration</div>

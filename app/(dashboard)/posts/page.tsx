@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -175,36 +176,36 @@ export default function PostsPage() {
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as any)}
               className="w-40"
-            >
-              <option value="All">All Status</option>
-              <option value="Published">Published</option>
-              <option value="Pending Review">Pending Review</option>
-              <option value="Draft">Draft</option>
-              <option value="Rejected">Rejected</option>
-            </Select>
+              options={[
+                { value: 'All', label: 'All Status' },
+                { value: 'Published', label: 'Published' },
+                { value: 'Pending Review', label: 'Pending Review' },
+                { value: 'Draft', label: 'Draft' },
+                { value: 'Rejected', label: 'Rejected' },
+              ]}
+            />
 
             <Select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value as any)}
               className="w-32"
-            >
-              <option value="All">All Types</option>
-              <option value="text">Text</option>
-              <option value="photo">Photo</option>
-              <option value="video">Video</option>
-            </Select>
+              options={[
+                { value: 'All', label: 'All Types' },
+                { value: 'text', label: 'Text' },
+                { value: 'photo', label: 'Photo' },
+                { value: 'video', label: 'Video' },
+              ]}
+            />
 
             <Select
               value={projectFilter}
               onChange={(e) => setProjectFilter(e.target.value)}
               className="w-48"
-            >
-              {projects.map((project) => (
-                <option key={project} value={project}>
-                  {project}
-                </option>
-              ))}
-            </Select>
+              options={projects.map((project) => ({
+                value: project,
+                label: project,
+              }))}
+            />
           </div>
         </div>
       </Card>
@@ -221,11 +222,12 @@ export default function PostsPage() {
               {/* Media Thumbnail */}
               {post.mediaUrl && (
                 <div className="flex-shrink-0">
-                  <div className="w-32 h-32 bg-gray-100 rounded-lg overflow-hidden">
-                    <img
+                  <div className="relative w-32 h-32 bg-gray-100 rounded-lg overflow-hidden">
+                    <Image
                       src={post.mediaThumbnail || post.mediaUrl}
                       alt="Post media"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </div>
                 </div>
@@ -295,7 +297,7 @@ export default function PostsPage() {
                         </Button>
                         <Button
                           size="sm"
-                          variant="outline"
+                          variant="secondary"
                           onClick={(e) => {
                             e.stopPropagation();
                             // Handle reject
@@ -310,7 +312,7 @@ export default function PostsPage() {
                     )}
                     <Button
                       size="sm"
-                      variant="outline"
+                      variant="secondary"
                       onClick={(e) => {
                         e.stopPropagation();
                         router.push(`/posts/${post.id}`);

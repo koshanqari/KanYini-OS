@@ -6,7 +6,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'keaprojects.com.au',
       },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
+    unoptimized: true,
   },
 };
 
