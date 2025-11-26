@@ -66,6 +66,24 @@ export function Sidebar() {
           {navigation.map((item) => {
             const isActive = pathname.startsWith(item.href);
             const Icon = item.icon;
+            
+            // If item has a badge, render as non-clickable
+            if (item.badge) {
+              return (
+                <div
+                  key={item.name}
+                  className="group flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-400 cursor-not-allowed opacity-60"
+                >
+                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  <span className="flex-1">{item.name}</span>
+                  <span className="text-xs px-1.5 py-0.5 bg-gray-200 text-gray-600 rounded">
+                    {item.badge}
+                  </span>
+                </div>
+              );
+            }
+            
+            // Regular clickable item
             return (
               <Link
                 key={item.name}
@@ -79,11 +97,6 @@ export function Sidebar() {
               >
                 <Icon className="w-5 h-5 flex-shrink-0" />
                 <span className="flex-1">{item.name}</span>
-                {item.badge && (
-                  <span className="text-xs px-1.5 py-0.5 bg-gray-200 text-gray-600 rounded">
-                    {item.badge}
-                  </span>
-                )}
               </Link>
             );
           })}
@@ -114,6 +127,24 @@ export function Sidebar() {
                 {damItems.map((item) => {
                   const isActive = pathname.startsWith(item.href);
                   const Icon = item.icon;
+                  
+                  // If item has a badge, render as non-clickable
+                  if (item.badge) {
+                    return (
+                      <div
+                        key={item.name}
+                        className="group flex items-center gap-3 pl-11 pr-3 py-2 text-sm font-medium rounded-md text-gray-400 cursor-not-allowed opacity-60"
+                      >
+                        <Icon className="w-4 h-4 flex-shrink-0" />
+                        <span className="flex-1">{item.name}</span>
+                        <span className="text-xs px-1.5 py-0.5 bg-gray-200 text-gray-600 rounded">
+                          {item.badge}
+                        </span>
+                      </div>
+                    );
+                  }
+                  
+                  // Regular clickable item
                   return (
                     <Link
                       key={item.name}
@@ -127,11 +158,6 @@ export function Sidebar() {
                     >
                       <Icon className="w-4 h-4 flex-shrink-0" />
                       <span className="flex-1">{item.name}</span>
-                      {item.badge && (
-                        <span className="text-xs px-1.5 py-0.5 bg-gray-200 text-gray-600 rounded">
-                          {item.badge}
-                        </span>
-                      )}
                     </Link>
                   );
                 })}
