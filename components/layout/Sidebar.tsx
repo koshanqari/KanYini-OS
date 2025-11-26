@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, 
   Users, 
-  FileText, 
   FolderKanban,
   Calendar,
   MessageSquare,
@@ -25,7 +24,6 @@ const navigation = [
   { name: 'Beneficiaries', href: '/beneficiaries', icon: Users },
   { name: 'Projects', href: '/projects', icon: FolderKanban },
   { name: 'Events', href: '/events', icon: Calendar },
-  { name: 'Field Reports', href: '/field-reports', icon: FileText },
   { name: 'Team', href: '/team', icon: Users },
   { name: 'KC Users', href: '/kc-users', icon: Users },
   { name: 'Messages', href: '/messages', icon: MessageSquare },
