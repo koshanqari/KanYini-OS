@@ -798,3 +798,185 @@ export interface SocialPost {
   totalReach?: number;
   totalEngagement?: number;
 }
+
+// KC (Kanyini Connect) App User Types
+export type KCUserStatus = 'active' | 'suspended' | 'warned' | 'banned';
+export type KCUserRole = 'user' | 'admin';
+
+export interface KCExperience {
+  id: string;
+  designation: string;
+  companyName: string;
+  industry?: string;
+  description?: string;
+  startDate: Date;
+  endDate?: Date;
+  isPresent: boolean;
+  location?: {
+    city?: string;
+    state?: string;
+    country?: string;
+  };
+}
+
+export interface KCEducation {
+  id: string;
+  type: 'education' | 'certificate';
+  school?: string;
+  course: string;
+  degreeOrCertificateName: string;
+  startDate?: Date;
+  endDate?: Date;
+  isPresent: boolean;
+  description?: string;
+}
+
+export interface KCUserProfile {
+  about?: string;
+  profilePictureUrl?: string;
+  phone?: string;
+  preferredTimeToConnect?: string;
+  preferredWayToConnect?: string;
+  socialMediaLinks?: string[];
+  myExpertise?: string[];
+}
+
+export interface KCUser {
+  id: string;
+  email: string;
+  name: string;
+  role: KCUserRole;
+  status: KCUserStatus;
+  isVerified: boolean;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  lastActiveAt?: Date;
+  
+  // Profile
+  profile: KCUserProfile;
+  
+  // Experience & Education
+  experiences: KCExperience[];
+  education: KCEducation[];
+  skills: string[];
+  
+  // Community Engagement
+  totalPosts: number;
+  totalProjects: number; // Projects they're involved in
+  totalFollowers: number;
+  totalFollowing: number;
+  pledges?: string[];
+  achievements?: string[];
+  
+  // Impact Metrics
+  totalContributions: number; // Money contributed
+  peopleInvited: number;
+  fundsRaised: number; // Through their efforts
+  postsShared: number;
+  
+  // Moderation
+  warningCount: number;
+  warnings?: {
+    id: string;
+    reason: string;
+    issuedBy: string;
+    issuedAt: Date;
+    notes?: string;
+  }[];
+  suspensions?: {
+    id: string;
+    reason: string;
+    issuedBy: string;
+    startDate: Date;
+    endDate?: Date;
+    notes?: string;
+  }[];
+  moderationNotes?: string;
+}
+
+// Admin Messages / Support System Types
+export type MessageStatus = 'open' | 'in_progress' | 'resolved' | 'closed';
+export type MessagePriority = 'low' | 'medium' | 'high' | 'urgent';
+export type MessageCategory = 'technical' | 'account' | 'payment' | 'content' | 'report' | 'general' | 'feedback';
+
+export interface AdminMessage {
+  id: string;
+  content: string;
+  senderId: string;
+  senderName: string;
+  senderRole: 'user' | 'admin';
+  timestamp: Date;
+  attachments?: string[];
+  isRead: boolean;
+}
+
+export interface AdminConversation {
+  id: string;
+  userId: string;
+  userName: string;
+  userEmail: string;
+  userProfilePicture?: string;
+  subject: string;
+  category: MessageCategory;
+  status: MessageStatus;
+  priority: MessagePriority;
+  messages: AdminMessage[];
+  assignedTo?: string; // Admin name
+  createdAt: Date;
+  updatedAt: Date;
+  resolvedAt?: Date;
+  tags?: string[];
+  lastMessagePreview?: string;
+  unreadCount: number;
+}
+
+// Team Management Types
+export type TeamMemberType = 'full-time' | 'part-time' | 'fellow' | 'volunteer' | 'contractor' | 'intern';
+export type TeamMemberStatus = 'active' | 'on-leave' | 'inactive';
+export type Department = 'operations' | 'programs' | 'communications' | 'finance' | 'technology' | 'fundraising' | 'field' | 'research';
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  profilePicture?: string;
+  type: TeamMemberType;
+  status: TeamMemberStatus;
+  role: string;
+  department: Department;
+  joinDate: Date;
+  endDate?: Date; // For fellows, interns, contractors
+  location?: string;
+  bio?: string;
+  
+  // Skills & Expertise
+  skills: string[];
+  languages: string[];
+  
+  // Work Details
+  projects: string[]; // Project IDs they're working on
+  weeklyHours?: number; // For part-time/fellows
+  fellowship?: {
+    program: string;
+    cohort: string;
+    duration: string; // e.g., "6 months"
+    stipend?: number;
+  };
+  
+  // Contact & Social
+  linkedIn?: string;
+  twitter?: string;
+  
+  // Performance & Activity
+  tasksCompleted?: number;
+  activeProjects?: number;
+  lastActive?: Date;
+  
+  // HR Details
+  reportingTo?: string; // Manager's ID
+  teamLead?: boolean;
+  notes?: string;
+}
+
