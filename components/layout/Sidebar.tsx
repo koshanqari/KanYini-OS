@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, 
   Users, 
+  FileText,
   FolderKanban,
   Calendar,
   MessageSquare,
