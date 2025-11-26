@@ -72,7 +72,7 @@ export function Sidebar() {
               return (
                 <div
                   key={item.name}
-                  className="group flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-400 cursor-not-allowed opacity-60"
+                  className="group flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-700"
                 >
                   <Icon className="w-5 h-5 flex-shrink-0" />
                   <span className="flex-1">{item.name}</span>
@@ -133,7 +133,7 @@ export function Sidebar() {
                     return (
                       <div
                         key={item.name}
-                        className="group flex items-center gap-3 pl-11 pr-3 py-2 text-sm font-medium rounded-md text-gray-400 cursor-not-allowed opacity-60"
+                        className="group flex items-center gap-3 pl-11 pr-3 py-2 text-sm font-medium rounded-md text-gray-600"
                       >
                         <Icon className="w-4 h-4 flex-shrink-0" />
                         <span className="flex-1">{item.name}</span>
