@@ -22,6 +22,7 @@ import {
   User,
   Calendar,
   Eye,
+  EyeOff,
   TrendingUp,
   AlertCircle
 } from 'lucide-react';
@@ -31,7 +32,7 @@ import { PostStatus } from '@/types';
 export default function PostDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const [showModerationModal, setShowModerationModal] = useState(false);
-  const [moderationAction, setModerationAction] = useState<'approve' | 'reject'>('approve');
+  const [moderationAction, setModerationAction] = useState<'approve' | 'hide' | 'remove'>('approve');
   const [moderationNotes, setModerationNotes] = useState('');
 
   const post = mockPosts.find((p) => p.id === params.id);
@@ -54,13 +55,13 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
 
   const getStatusColor = (status: PostStatus) => {
     switch (status) {
-      case 'Published':
+      case 'Active':
         return 'bg-green-100 text-green-800';
-      case 'Pending Review':
+      case 'Flagged':
         return 'bg-yellow-100 text-yellow-800';
-      case 'Draft':
+      case 'Hidden':
         return 'bg-gray-100 text-gray-800';
-      case 'Rejected':
+      case 'Removed':
         return 'bg-red-100 text-red-800';
       default:
         return 'bg-gray-100 text-gray-800';
@@ -125,7 +126,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
                 <Badge className="bg-blue-100 text-blue-800 capitalize">{post.type}</Badge>
               </div>
 
-              {post.status === 'Pending Review' && (
+              {post.status === 'Flagged' && (
                 <div className="flex items-center gap-2">
                   <Button
                     size="sm"
@@ -142,13 +143,25 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
                     size="sm"
                     variant="secondary"
                     onClick={() => {
-                      setModerationAction('reject');
+                      setModerationAction('hide');
+                      setShowModerationModal(true);
+                    }}
+                    className="border-gray-300 text-gray-600 hover:bg-gray-50"
+                  >
+                    <EyeOff className="w-4 h-4 mr-1" />
+                    Hide
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    onClick={() => {
+                      setModerationAction('remove');
                       setShowModerationModal(true);
                     }}
                     className="border-red-300 text-red-600 hover:bg-red-50"
                   >
                     <XCircle className="w-4 h-4 mr-1" />
-                    Reject
+                    Remove
                   </Button>
                 </div>
               )}
@@ -281,15 +294,13 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
 
-              {post.publishedAt && (
-                <div>
-                  <p className="text-sm text-gray-600 mb-1">Published</p>
-                  <div className="flex items-center gap-2 text-gray-900">
-                    <Calendar className="w-4 h-4" />
-                    <span>{formatDate(post.publishedAt)}</span>
-                  </div>
+              <div>
+                <p className="text-sm text-gray-600 mb-1">Created</p>
+                <div className="flex items-center gap-2 text-gray-900">
+                  <Calendar className="w-4 h-4" />
+                  <span>{formatDate(post.createdAt)}</span>
                 </div>
-              )}
+              </div>
 
               <div>
                 <p className="text-sm text-gray-600 mb-1">Views</p>
@@ -384,7 +395,7 @@ export default function PostDetailPage({ params }: { params: { id: string } }) {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Moderation Notes {moderationAction === 'reject' && <span className="text-red-500">*</span>}
+              Moderation Notes {moderationAction === 'remove' && <span className="text-red-500">*</span>}
             </label>
             <Textarea
               value={moderationNotes}

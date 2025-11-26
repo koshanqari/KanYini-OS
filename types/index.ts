@@ -270,7 +270,7 @@ export interface Task {
 
 // Post Types
 export type PostType = 'text' | 'photo' | 'video';
-export type PostStatus = 'Draft' | 'Published' | 'Pending Review' | 'Rejected';
+export type PostStatus = 'Active' | 'Hidden' | 'Flagged' | 'Removed';
 
 export interface Post {
   id: string;
@@ -287,6 +287,7 @@ export interface Post {
   authorId: string;
   authorName: string;
   authorPhoto?: string;
+  isUserBlocked?: boolean;
   
   // Media (for photo/video posts)
   mediaUrl?: string;
@@ -298,6 +299,10 @@ export interface Post {
   shares: number;
   
   // Moderation
+  isFlagged?: boolean;
+  flaggedReason?: string;
+  flaggedBy?: string;
+  flaggedAt?: Date;
   moderatedBy?: string;
   moderatedAt?: Date;
   moderationNotes?: string;
@@ -305,7 +310,6 @@ export interface Post {
   // Metadata
   createdAt: Date;
   updatedAt: Date;
-  publishedAt?: Date;
 }
 
 export interface Comment {
@@ -640,4 +644,157 @@ export interface Program {
   // Metadata
   createdAt: Date;
   updatedAt: Date;
+}
+
+// ==================== DAM (Digital Asset Management) ====================
+
+// Asset Types
+export type AssetType = 'image' | 'video' | 'audio' | 'document' | 'other';
+export type AssetStatus = 'draft' | 'under_review' | 'approved' | 'rejected' | 'archived';
+
+export interface Asset {
+  id: string;
+  name: string;
+  type: AssetType;
+  fileUrl: string;
+  thumbnailUrl?: string;
+  size: number; // in bytes
+  format: string; // jpg, png, mp4, pdf, etc.
+  mimeType: string;
+  uploadedBy: string;
+  uploadedAt: Date;
+  tags: string[];
+  category: string;
+  description?: string;
+  status: AssetStatus;
+  vaults: string[]; // vault IDs
+  width?: number;
+  height?: number;
+  duration?: number; // for video/audio in seconds
+}
+
+// Content Types
+export type ContentType = 'article' | 'book' | 'video' | 'podcast';
+export type ContentStatus = 'draft' | 'under_review' | 'approved' | 'published' | 'rejected' | 'archived';
+
+export interface Content {
+  id: string;
+  type: ContentType;
+  title: string;
+  description: string;
+  author: string;
+  authorId: string;
+  status: ContentStatus;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt?: Date;
+  thumbnailUrl?: string;
+  coverImage?: string;
+  assets: string[]; // asset IDs
+  tags: string[];
+  category: string;
+  views: number;
+  
+  // Type-specific fields
+  // Article
+  articleContent?: string;
+  estimatedReadTime?: number; // in minutes
+  
+  // Video
+  videoUrl?: string;
+  videoAssetId?: string;
+  videoDuration?: number;
+  
+  // Podcast
+  podcastUrl?: string;
+  podcastAssetId?: string;
+  podcastDuration?: number;
+  episodeNumber?: number;
+  seriesName?: string;
+  
+  // Book
+  bookPdfUrl?: string;
+  bookAssetId?: string;
+  isbn?: string;
+  pageCount?: number;
+  publisher?: string;
+  publishYear?: number;
+  
+  // Approval
+  reviewedBy?: string;
+  reviewedAt?: Date;
+  reviewNotes?: string;
+}
+
+// Vault Types
+export type VaultVisibility = 'public' | 'private' | 'restricted';
+
+export interface VaultItem {
+  id: string;
+  name: string;
+  type: 'file' | 'document' | 'image' | 'video' | 'link' | 'pdf';
+  url?: string;
+  fileSize?: number;
+  format?: string;
+  uploadedBy: string;
+  uploadedAt: Date;
+  description?: string;
+  thumbnailUrl?: string;
+}
+
+export interface VaultCategory {
+  id: string;
+  name: string;
+  description?: string;
+  items: VaultItem[];
+}
+
+export interface Vault {
+  id: string;
+  name: string;
+  description: string;
+  visibility: VaultVisibility;
+  categories: VaultCategory[];
+  createdBy: string;
+  createdAt: Date;
+  updatedAt: Date;
+  tags: string[];
+  allowedUsers?: string[]; // for restricted vaults
+  thumbnailUrl?: string;
+  icon?: string;
+}
+
+// Publishing Types
+export type SocialPlatform = 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'youtube';
+export type PublishStatus = 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
+
+export interface SocialPost {
+  id: string;
+  content: string;
+  platforms: SocialPlatform[];
+  assets: string[];
+  mediaUrl?: string;
+  scheduledFor?: Date;
+  publishedAt?: Date;
+  status: PublishStatus;
+  createdBy: string;
+  createdAt: Date;
+  
+  // Platform-specific data
+  platformData?: {
+    platform: SocialPlatform;
+    postId?: string;
+    url?: string;
+    publishedAt?: Date;
+    error?: string;
+    engagement?: {
+      likes?: number;
+      comments?: number;
+      shares?: number;
+    };
+  }[];
+  
+  // Analytics
+  totalReach?: number;
+  totalEngagement?: number;
 }
