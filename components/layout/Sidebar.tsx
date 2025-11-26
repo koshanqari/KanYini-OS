@@ -24,9 +24,11 @@ const navigation = [
   { name: 'Donors', href: '/donors', icon: Users },
   { name: 'Beneficiaries', href: '/beneficiaries', icon: Users },
   { name: 'Projects', href: '/projects', icon: FolderKanban },
+  { name: 'Governance', href: '/governance', icon: Database, badge: 'soon' },
+  { name: 'Community Welfare', href: '/community-welfare', icon: Users, badge: 'soon' },
   { name: 'Events', href: '/events', icon: Calendar },
   { name: 'Team', href: '/team', icon: Users },
-  { name: 'KC Users', href: '/kc-users', icon: Users },
+  { name: 'KCC Users', href: '/kc-users', icon: Users },
   { name: 'Messages', href: '/messages', icon: MessageSquare },
 ];
 
@@ -34,6 +36,7 @@ const damItems = [
   { name: 'Content', href: '/dam/content', icon: FileText },
   { name: 'Vaults', href: '/dam/vaults', icon: FolderOpen },
   { name: 'Publishing', href: '/dam/publishing', icon: Share2 },
+  { name: 'CMS', href: '/dam/cms', icon: FileText, badge: 'soon' },
   { name: 'Community Posts', href: '/posts', icon: MessageSquare },
 ];
 
@@ -75,7 +78,12 @@ export function Sidebar() {
                 )}
               >
                 <Icon className="w-5 h-5 flex-shrink-0" />
-                {item.name}
+                <span className="flex-1">{item.name}</span>
+                {item.badge && (
+                  <span className="text-xs px-1.5 py-0.5 bg-gray-200 text-gray-600 rounded">
+                    {item.badge}
+                  </span>
+                )}
               </Link>
             );
           })}
@@ -118,7 +126,12 @@ export function Sidebar() {
                       )}
                     >
                       <Icon className="w-4 h-4 flex-shrink-0" />
-                      {item.name}
+                      <span className="flex-1">{item.name}</span>
+                      {item.badge && (
+                        <span className="text-xs px-1.5 py-0.5 bg-gray-200 text-gray-600 rounded">
+                          {item.badge}
+                        </span>
+                      )}
                     </Link>
                   );
                 })}
